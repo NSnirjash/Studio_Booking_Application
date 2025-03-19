@@ -1,0 +1,13 @@
+<input type="text" [(ngModel)]="searchQuery" (input)="filterStudios()" placeholder="Search by area">
+<div *ngFor="let studio of studios" class="studio-card">
+    <h3>{{ studio.Name }}</h3>
+    <p>Type: {{ studio.Type }}</p>
+    <p>Location: {{ studio.Location.City }}, {{ studio.Location.Area }}</p>
+    <p>Amenities: {{ studio.Amenities.join(', ') }}</p>
+    <p>Price: {{ studio.PricePerHour }} {{ studio.Currency }}</p>
+    <p>Rating: {{ studio.Rating }}</p>
+    <img src="{{ studio.Images }}" alt="{{ studio.Name }}" />
+    <button (click)="selectedStudio = studio">Book Now</button>
+    <app-booking *ngIf="selectedStudio" [studio]="selectedStudio"></app-booking>
+
+</div>

@@ -1,0 +1,44 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { StudioService } from '../../service/studio.service';
+import { Studio } from '../../model/studio';
+
+@Component({
+  selector: 'app-studio-list',
+  standalone: false,
+  templateUrl: './studio-list.component.html',
+  styleUrl: './studio-list.component.css'
+})
+export class StudioListComponent implements OnInit {
+
+  studios: Studio[] = [];
+  selectedStudio!: Studio;
+
+  constructor(private studioService: StudioService) { }
+
+  ngOnInit(): void {
+    this.loadStudios();
+  }
+
+  
+  loadStudios(): void {
+    this.studioService.getStudios().subscribe(data => {
+      this.studios = data;
+    });
+  }
+
+  searchQuery = '';
+
+  filterStudios(): void {
+    this.studioService.getStudios().subscribe(data => {
+      this.studios = data.filter(studio =>
+        studio.Location.Area.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    });
+  }
+
+
+  selectStudio(studio: Studio): void {
+    this.selectedStudio = studio;
+  }
+
+}
