@@ -11,7 +11,8 @@ import { Studio } from '../../model/studio';
 export class StudioListComponent implements OnInit {
 
   studios: Studio[] = [];
-  selectedStudio!: Studio;
+  selectedStudio: Studio | null = null; // Allow null
+  searchQuery = '';
 
   constructor(private studioService: StudioService) { }
 
@@ -26,8 +27,6 @@ export class StudioListComponent implements OnInit {
     });
   }
 
-  searchQuery = '';
-
   filterStudios(): void {
     this.studioService.getStudios().subscribe(data => {
       this.studios = data.filter(studio =>
@@ -37,8 +36,17 @@ export class StudioListComponent implements OnInit {
   }
 
 
+  // selectStudio(studio: Studio): void {
+  //   this.selectedStudio = studio;
+  // }
+
   selectStudio(studio: Studio): void {
-    this.selectedStudio = studio;
+    // Toggle booking form only for the selected studio
+    this.selectedStudio = this.selectedStudio?.Id === studio.Id ? null : studio;
+  }
+
+  trackById(index: number, studio: Studio): number {
+    return studio.Id;
   }
 
 }

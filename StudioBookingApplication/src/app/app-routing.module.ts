@@ -6,7 +6,7 @@ import { BookingComponent } from './components/booking/booking.component';
 const routes: Routes = [
   {path:'studio', component: StudioListComponent},
   {path:'booking', component: BookingComponent},
-  { path: '', redirectTo: '/studios', pathMatch: 'full' }
+  { path: '', redirectTo: '/studio', pathMatch: 'full' }
 ];
 
 @NgModule({
