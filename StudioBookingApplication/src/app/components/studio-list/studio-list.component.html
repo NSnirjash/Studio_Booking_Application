@@ -1,16 +1,76 @@
-<input type="text" [(ngModel)]="searchQuery" (input)="filterStudios()" placeholder="Search by area">
+<!-- <input type="text" [(ngModel)]="searchQuery" (input)="filterStudios()" placeholder="Search by area">
 
 <div *ngFor="let studio of studios; trackBy: trackById" class="studio-card">
     <h3>{{ studio.Name }}</h3>
     <p>Type: {{ studio.Type }}</p>
-    <p>Location: {{ studio.Location.City }}, {{ studio.Location.Area }}</p>
+    <p>Location: {{ studio.Location.City }}, {{ studio.Location.Area }}, {{ studio.Location.Address }}</p>
     <p>Amenities: {{ studio.Amenities.join(', ') }}</p>
     <p>Price: {{ studio.PricePerHour }} {{ studio.Currency }}</p>
     <p>Rating: {{ studio.Rating }}</p>
-    <img src="{{ studio.Images[0] }}" alt="{{ studio.Name }}" />
 
     <button (click)="selectStudio(studio)">Book Now</button>
 
     
     <app-booking *ngIf="selectedStudio?.Id === studio.Id" [studio]="studio"></app-booking>
+</div> -->
+
+<!-- <input type="text" [(ngModel)]="searchQuery" (input)="filterStudios()" placeholder="Search by area" list="autoCompleteList">
+<datalist id="autoCompleteList">
+  <option *ngFor="let area of autoCompleteList" [value]="area"></option>
+</datalist>
+
+<div *ngFor="let studio of filteredStudios; trackBy: trackById" class="studio-card">
+    <h3>{{ studio.Name }}</h3>
+    <p>Type: {{ studio.Type }}</p>
+    <p>Location: {{ studio.Location.City }}, {{ studio.Location.Area }}, {{ studio.Location.Address }}</p>
+    <p>Amenities: {{ studio.Amenities.join(', ') }}</p>
+    <p>Price: {{ studio.PricePerHour }} {{ studio.Currency }}</p>
+    <p>Rating: {{ studio.Rating }}</p>
+    <img [src]="studio.Images[0]" alt="{{ studio.Name }}" />
+
+    <button (click)="selectStudio(studio)">Book Now</button>
+
+    <app-booking *ngIf="selectedStudio?.Id === studio.Id" [studio]="studio"></app-booking>
+</div> -->
+
+<!-- <input type="text" [(ngModel)]="searchQuery" (input)="filterStudios()" placeholder="Search by area" list="autoCompleteList">
+<datalist id="autoCompleteList">
+  <option *ngFor="let area of autoCompleteList" [value]="area"></option>
+</datalist>
+
+<button (click)="searchByRadius()">Search by Radius ({{ radius }} km)</button>
+
+<div *ngFor="let studio of filteredStudios; trackBy: trackById" class="studio-card">
+    <h3>{{ studio.Name }}</h3>
+    <p>Type: {{ studio.Type }}</p>
+    <p>Location: {{ studio.Location.City }}, {{ studio.Location.Area }}, {{ studio.Location.Address }}</p>
+    <p>Amenities: {{ studio.Amenities.join(', ') }}</p>
+    <p>Price: {{ studio.PricePerHour }} {{ studio.Currency }}</p>
+    <p>Rating: {{ studio.Rating }}</p>
+    <img [src]="studio.Images[0]" alt="{{ studio.Name }}" />
+
+    <button (click)="selectStudio(studio)">Book Now</button>
+
+    <app-booking *ngIf="selectedStudio?.Id === studio.Id" [studio]="studio"></app-booking>
+</div> -->
+
+<input type="text" [(ngModel)]="searchQuery" (input)="filterStudios()" placeholder="Search by area" list="autoCompleteList">
+<datalist id="autoCompleteList">
+  <option *ngFor="let area of autoCompleteList" [value]="area"></option>
+</datalist>
+
+<button (click)="searchByRadius()">Search by Radius ({{ radius }} km)</button>
+
+<div *ngFor="let studio of filteredStudios; trackBy: trackById" class="studio-card">
+    <h3>{{ studio.Name }}</h3>
+    <p>Type: {{ studio.Type }}</p>
+    <p>Location: {{ studio.Location.City }}, {{ studio.Location.Area }}, {{ studio.Location.Address }}</p>
+    <p>Amenities: {{ studio.Amenities.join(', ') }}</p>
+    <p>Price: {{ studio.PricePerHour }} {{ studio.Currency }}</p>
+    <p>Rating: {{ studio.Rating }}</p>
+    <img [src]="studio.Images[0]" alt="{{ studio.Name }}" />
+
+    <button (click)="selectStudio(studio)">Book Now</button>
 </div>
+
+<app-booking *ngIf="selectedStudio" [studio]="selectedStudio" (close)="closeBookingPopup()"></app-booking>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Studio } from '../../model/studio';
 
 @Component({
@@ -9,6 +9,7 @@ import { Studio } from '../../model/studio';
 })
 export class BookingComponent {
   @Input() studio!: Studio;
+  @Output() close = new EventEmitter<void>();
   bookingDate!: string;
   bookingTime!: string;
   userName!: string;
@@ -23,5 +24,10 @@ export class BookingComponent {
     };
     localStorage.setItem('booking', JSON.stringify(booking));
     alert('Booking Confirmed!');
+    this.close.emit();
+  }
+
+  closePopup() {
+    this.close.emit();
   }
 }
