@@ -50,17 +50,36 @@ export class BookingComponent implements OnInit {
     return `${newHours}:${newMinutes}`;
   }
 
+  checkAvailability(): boolean {
+    // Check if the selected time slot is available
+    const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+    return !bookings.some((booking: Booking) => 
+      booking.studio === this.studio.Name &&
+      booking.date === this.bookingDate &&
+      booking.time === this.bookingTime
+    );
+  }
+
   bookNow() {
+    if (!this.checkAvailability()) {
+      alert('The selected time slot is not available. Please choose another time.');
+      return;
+    }
+
     const booking: Booking = {
       studio: this.studio.Name,
       date: this.bookingDate,
       time: this.bookingTime,
       user: { name: this.userName, email: this.userEmail }
     };
-    this.bookingService.saveBooking(booking).subscribe(() => {
-      alert('Booking Confirmed!');
-      this.close.emit();
-    });
+
+    // Save booking to local storage
+    let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+    bookings.push(booking);
+    localStorage.setItem('bookings', JSON.stringify(bookings));
+
+    alert(`Booking Confirmed!\n\nStudio: ${booking.studio}\nDate: ${booking.date}\nTime: ${booking.time}\nName: ${booking.user.name}\nEmail: ${booking.user.email}`);
+    this.close.emit();
   }
 
   closePopup() {
