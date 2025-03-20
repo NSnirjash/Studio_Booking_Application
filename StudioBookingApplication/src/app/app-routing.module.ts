@@ -5,7 +5,7 @@ import { BookingComponent } from './components/booking/booking.component';
 
 const routes: Routes = [
   {path:'studio', component: StudioListComponent},
-  {path:'booking', component: BookingComponent},
+  {path:'bookings', component: BookingComponent},
   { path: '', redirectTo: '/studio', pathMatch: 'full' }
 ];
 

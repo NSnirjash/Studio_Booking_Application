@@ -12,6 +12,7 @@ export class StudioService {
     constructor(private http: HttpClient) {}
 
     private apiUrl = 'http://localhost:3000/Studios';
+    // private apiUrlbooking = 'http://localhost:3000/bookings';
 
     getStudios(): Observable<Studio[]> {
         return this.http.get<Studio[]>(this.apiUrl);
@@ -44,6 +45,10 @@ export class StudioService {
     filterStudiosByType(type: string): Observable<Studio[]> {
         return this.http.get<Studio[]>(`${this.apiUrl}?Type=${type}`);
     }
+
+    // saveBooking(booking: any): Observable<any> {
+    //     return this.http.post(`${this.apiUrl}/bookings`, booking);
+    // }
 
     calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
         const R = 6371; // Radius of the Earth in km

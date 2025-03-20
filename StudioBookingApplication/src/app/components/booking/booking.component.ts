@@ -1,5 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Studio } from '../../model/studio';
+import { StudioService } from '../../service/studio.service';
+import { FormsModule } from '@angular/forms';
+import { BookingService } from '../../service/booking.service';
+import { Booking } from '../../model/booking';
 
 @Component({
   selector: 'app-booking',
@@ -8,6 +12,33 @@ import { Studio } from '../../model/studio';
   styleUrl: './booking.component.css'
 })
 export class BookingComponent {
+  // @Input() studio!: Studio;
+  // @Output() close = new EventEmitter<void>();
+  // bookingDate!: string;
+  // bookingTime!: string;
+  // userName!: string;
+  // userEmail!: string;
+
+  // constructor(private studioService: StudioService) {}
+
+
+  // bookNow() {
+  //   const booking = {
+  //     studio: this.studio.Name,
+  //     date: this.bookingDate,
+  //     time: this.bookingTime,
+  //     user: { name: this.userName, email: this.userEmail }
+  //   };
+  //   this.studioService.saveBooking(booking).subscribe(() => {
+  //     alert('Booking Confirmed!');
+  //     this.close.emit();
+  //   });
+  // }
+
+  // closePopup() {
+  //   this.close.emit();
+  // }
+
   @Input() studio!: Studio;
   @Output() close = new EventEmitter<void>();
   bookingDate!: string;
@@ -15,16 +46,19 @@ export class BookingComponent {
   userName!: string;
   userEmail!: string;
 
+  constructor(private bookingService: BookingService) {}
+
   bookNow() {
-    const booking = {
+    const booking: Booking = {
       studio: this.studio.Name,
       date: this.bookingDate,
       time: this.bookingTime,
       user: { name: this.userName, email: this.userEmail }
     };
-    localStorage.setItem('booking', JSON.stringify(booking));
-    alert('Booking Confirmed!');
-    this.close.emit();
+    this.bookingService.saveBooking(booking).subscribe(() => {
+      alert('Booking Confirmed!');
+      this.close.emit();
+    });
   }
 
   closePopup() {
