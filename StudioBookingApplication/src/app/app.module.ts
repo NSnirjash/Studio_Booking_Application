@@ -7,14 +7,14 @@ import { StudioListComponent } from './components/studio-list/studio-list.compon
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { BookingComponent } from './components/booking/booking.component';
-import { BookingListComponentComponent } from './components/booking-list-component/booking-list-component.component';
+import { BookingListComponent } from './components/booking-list/booking-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudioListComponent,
     BookingComponent,
-    BookingListComponentComponent
+    BookingListComponent,
   ],
   imports: [
     BrowserModule,
