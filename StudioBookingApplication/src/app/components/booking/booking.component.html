@@ -1,48 +1,23 @@
-<!-- <h2>Booking for {{ studio.Name }}</h2>
-<label>Date: <input type="date" [(ngModel)]="bookingDate"></label>
-<label>Time: <input type="time" [(ngModel)]="bookingTime"></label>
-<label>Name: <input type="text" [(ngModel)]="userName"></label>
-<label>Email: <input type="email" [(ngModel)]="userEmail"></label>
-<button (click)="bookNow()">Confirm Booking</button> -->
-
-<!-- 
-<div *ngIf="studio">
+<div class="booking-popup">
+  <div class="booking-popup-content">
+    <span class="close" (click)="closePopup()">&times;</span>
     <h2>Book {{ studio.Name }}</h2>
     <form (ngSubmit)="bookNow()">
       <label for="bookingDate">Date:</label>
       <input type="date" id="bookingDate" [(ngModel)]="bookingDate" name="bookingDate" required>
-  
+
       <label for="bookingTime">Time:</label>
-      <input type="time" id="bookingTime" [(ngModel)]="bookingTime" name="bookingTime" required>
-  
+      <select id="bookingTime" [(ngModel)]="bookingTime" name="bookingTime" required>
+        <option *ngFor="let time of availableTimeSlots" [value]="time">{{ time }}</option>
+      </select>
+
       <label for="userName">Name:</label>
       <input type="text" id="userName" [(ngModel)]="userName" name="userName" required>
-  
+
       <label for="userEmail">Email:</label>
       <input type="email" id="userEmail" [(ngModel)]="userEmail" name="userEmail" required>
-  
+
       <button type="submit">Confirm Booking</button>
     </form>
-  </div> -->
-
-  <div class="booking-popup">
-    <div class="booking-popup-content">
-      <span class="close" (click)="closePopup()">&times;</span>
-      <h2>Book {{ studio.Name }}</h2>
-      <form (ngSubmit)="bookNow()">
-        <label for="bookingDate">Date:</label>
-        <input type="date" id="bookingDate" [(ngModel)]="bookingDate" name="bookingDate" required>
-  
-        <label for="bookingTime">Time:</label>
-        <input type="time" id="bookingTime" [(ngModel)]="bookingTime" name="bookingTime" required>
-  
-        <label for="userName">Name:</label>
-        <input type="text" id="userName" [(ngModel)]="userName" name="userName" required>
-  
-        <label for="userEmail">Email:</label>
-        <input type="email" id="userEmail" [(ngModel)]="userEmail" name="userEmail" required>
-  
-        <button type="submit">Confirm Booking</button>
-      </form>
-    </div>
   </div>
+</div>
