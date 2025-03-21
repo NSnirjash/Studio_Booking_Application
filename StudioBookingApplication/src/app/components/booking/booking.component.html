@@ -9,7 +9,7 @@
       </div>
 
       <div class="mb-3">
-        <label for="bookingTime" class="form-label">Time:</label>
+        <label for="bookingTime" class="form-label">Booking Time:</label>
         <select id="bookingTime" [(ngModel)]="bookingTime" name="bookingTime" class="form-select" required>
           <option *ngFor="let time of availableTimeSlots" [value]="time">{{ time }}</option>
         </select>
