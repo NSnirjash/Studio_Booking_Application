@@ -9,12 +9,16 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
 import { BookingComponent } from './components/booking/booking.component';
 import { BookingListComponent } from './components/booking-list/booking-list.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     StudioListComponent,
     BookingComponent,
     BookingListComponent,
+  
+    
   ],
   imports: [
     BrowserModule,

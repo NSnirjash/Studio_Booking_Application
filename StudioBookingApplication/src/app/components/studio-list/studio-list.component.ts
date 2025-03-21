@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { StudioService } from '../../service/studio.service';
 import { Studio } from '../../model/studio';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-studio-list',
@@ -17,7 +18,7 @@ export class StudioListComponent implements OnInit {
   autoCompleteList: string[] = [];
   radius = 10;
 
-  constructor(private studioService: StudioService) { }
+  constructor(private studioService: StudioService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadStudios();
@@ -98,4 +99,30 @@ export class StudioListComponent implements OnInit {
     return studio.Id;
   }
 
+  viewBookingList(): void {
+    this.router.navigate(['/viewBookings']);
+  }
+
+  // getStars(rating: number): string {
+  //   let stars = '';
+  //   for (let i = 0; i < 5; i++) {
+  //     stars += i < rating ? '<span class="star">★</span>' : '<span class="star text-secondary">☆</span>';
+  //   }
+  //   return stars;
+  // }
+
+  getStars(rating: number): string {
+    let stars = '<span class="rating-label">Rating:</span> ';
+    for (let i = 0; i < 5; i++) {
+      if (i < Math.floor(rating)) {
+        stars += '<span class="star full">★</span>';
+      } else if (i < rating) {
+        stars += '<span class="star half">★</span>';
+      } else {
+        stars += '<span class="star empty">☆</span>';
+      }
+    }
+    return `${stars} <span class='rating-text'>(${rating.toFixed(1)})</span>`;
+  }
 }
+

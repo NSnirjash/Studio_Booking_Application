@@ -4,6 +4,7 @@ import { StudioService } from '../../service/studio.service';
 import { FormsModule } from '@angular/forms';
 import { BookingService } from '../../service/booking.service';
 import { Booking } from '../../model/booking';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-booking',
@@ -20,7 +21,7 @@ export class BookingComponent implements OnInit {
   userEmail!: string;
   availableTimeSlots: string[] = [];
 
-  constructor(private bookingService: BookingService) {}
+  constructor(private bookingService: BookingService, private router: Router) {}
 
   ngOnInit(): void {
     this.generateTimeSlots();
@@ -73,13 +74,18 @@ export class BookingComponent implements OnInit {
       user: { name: this.userName, email: this.userEmail }
     };
 
-    // Save booking to local storage
-    let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-    bookings.push(booking);
-    localStorage.setItem('bookings', JSON.stringify(bookings));
-
-    alert(`Booking Confirmed!\n\nStudio: ${booking.studio}\nDate: ${booking.date}\nTime: ${booking.time}\nName: ${booking.user.name}\nEmail: ${booking.user.email}`);
-    this.close.emit();
+    // Save booking to the backend
+    this.bookingService.saveBooking(booking).subscribe(
+      response => {
+        alert(`Booking Confirmed!\n\nStudio: ${booking.studio}\nDate: ${booking.date}\nTime: ${booking.time}\nName: ${booking.user.name}\nEmail: ${booking.user.email}`);
+        this.router.navigate(['/viewBookings']);
+        this.close.emit();
+      },
+      error => {
+        console.error('Error saving booking', error);
+        alert('Error saving booking. Please try again.');
+      }
+    );
   }
 
   closePopup() {

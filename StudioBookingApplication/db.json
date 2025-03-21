@@ -2038,16 +2038,6 @@
   ],
   "bookings": [
     {
-      "studio": "Studio A",
-      "date": "2025-03-25",
-      "time": "14:00",
-      "user": {
-        "name": "John Doe",
-        "email": "johndoe@example.com"
-      },
-      "id": "7009"
-    },
-    {
       "id": "0977",
       "studio": "Uttara Art Studio 4",
       "date": "2025-03-21",
@@ -2115,6 +2105,26 @@
       "user": {
         "name": "NSnirjash",
         "email": "nirjash@gmail.com"
+      }
+    },
+    {
+      "id": "2395",
+      "studio": "Mirpur Rehearsal Space 3",
+      "date": "2025-03-24",
+      "time": "16:30",
+      "user": {
+        "name": "Habijabi",
+        "email": "habijabi@gmail.com"
+      }
+    },
+    {
+      "id": "a12b",
+      "studio": "Badda Recording Studio 20",
+      "date": "2025-03-23",
+      "time": "17:00",
+      "user": {
+        "name": "Nayamul",
+        "email": "nayanul@gmail.com"
       }
     }
   ]

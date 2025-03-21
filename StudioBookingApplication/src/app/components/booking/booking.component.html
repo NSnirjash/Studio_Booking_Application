@@ -1,23 +1,31 @@
 <div class="booking-popup">
-  <div class="booking-popup-content">
+  <div class="booking-popup-content animate">
     <span class="close" (click)="closePopup()">&times;</span>
-    <h2>Book {{ studio.Name }}</h2>
+    <h2 class="text-center">Book {{ studio.Name }}</h2>
     <form (ngSubmit)="bookNow()">
-      <label for="bookingDate">Date:</label>
-      <input type="date" id="bookingDate" [(ngModel)]="bookingDate" name="bookingDate" required>
+      <div class="mb-3">
+        <label for="bookingDate" class="form-label">Date:</label>
+        <input type="date" id="bookingDate" [(ngModel)]="bookingDate" name="bookingDate" class="form-control" required>
+      </div>
 
-      <label for="bookingTime">Time:</label>
-      <select id="bookingTime" [(ngModel)]="bookingTime" name="bookingTime" required>
-        <option *ngFor="let time of availableTimeSlots" [value]="time">{{ time }}</option>
-      </select>
+      <div class="mb-3">
+        <label for="bookingTime" class="form-label">Time:</label>
+        <select id="bookingTime" [(ngModel)]="bookingTime" name="bookingTime" class="form-select" required>
+          <option *ngFor="let time of availableTimeSlots" [value]="time">{{ time }}</option>
+        </select>
+      </div>
 
-      <label for="userName">Name:</label>
-      <input type="text" id="userName" [(ngModel)]="userName" name="userName" required>
+      <div class="mb-3">
+        <label for="userName" class="form-label">Name:</label>
+        <input type="text" id="userName" [(ngModel)]="userName" name="userName" class="form-control" required>
+      </div>
 
-      <label for="userEmail">Email:</label>
-      <input type="email" id="userEmail" [(ngModel)]="userEmail" name="userEmail" required>
+      <div class="mb-3">
+        <label for="userEmail" class="form-label">Email:</label>
+        <input type="email" id="userEmail" [(ngModel)]="userEmail" name="userEmail" class="form-control" required>
+      </div>
 
-      <button type="submit">Confirm Booking</button>
+      <button type="submit" class="btn btn-primary w-100">Confirm Booking</button>
     </form>
   </div>
 </div>
