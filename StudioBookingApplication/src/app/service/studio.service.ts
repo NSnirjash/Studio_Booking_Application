@@ -12,7 +12,6 @@ export class StudioService {
     constructor(private http: HttpClient) {}
 
     private apiUrl = 'http://localhost:3000/Studios';
-    // private apiUrlbooking = 'http://localhost:3000/bookings';
 
     getStudios(): Observable<Studio[]> {
         return this.http.get<Studio[]>(this.apiUrl);
@@ -20,18 +19,6 @@ export class StudioService {
 
     getStudio(id: number): Observable<Studio> {
         return this.http.get<Studio>(`${this.apiUrl}/${id}`);
-    }
-
-    addStudio(studio: Studio): Observable<Studio> {
-        return this.http.post<Studio>(this.apiUrl, studio);
-    }
-
-    updateStudio(studio: Studio): Observable<Studio> {
-        return this.http.put<Studio>(`${this.apiUrl}/${studio.Id}`, studio);
-    }
-
-    deleteStudio(id: number): Observable<Studio> {
-        return this.http.delete<Studio>(`${this.apiUrl}/${id}`);
     }
 
     searchStudios(term: string): Observable<Studio[]> {
@@ -46,12 +33,8 @@ export class StudioService {
         return this.http.get<Studio[]>(`${this.apiUrl}?Type=${type}`);
     }
 
-    // saveBooking(booking: any): Observable<any> {
-    //     return this.http.post(`${this.apiUrl}/bookings`, booking);
-    // }
-
     calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-        const R = 6371; // Radius of the Earth in km
+        const R = 6371;
         const dLat = this.deg2rad(lat2 - lat1);
         const dLon = this.deg2rad(lon2 - lon1);
         const a =
@@ -59,7 +42,7 @@ export class StudioService {
             Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
             Math.sin(dLon / 2) * Math.sin(dLon / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return R * c; // Distance in km
+        return R * c;
     }
 
     private deg2rad(deg: number): number {

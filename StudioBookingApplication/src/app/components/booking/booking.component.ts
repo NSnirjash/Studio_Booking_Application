@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Studio } from '../../model/studio';
-import { StudioService } from '../../service/studio.service';
-import { FormsModule } from '@angular/forms';
 import { BookingService } from '../../service/booking.service';
 import { Booking } from '../../model/booking';
 import { Router } from '@angular/router';
@@ -35,7 +33,7 @@ export class BookingComponent implements OnInit {
 
     while (currentTime < closeTime) {
       timeSlots.push(currentTime);
-      currentTime = this.addMinutes(currentTime, 30); // Add 30 minutes interval
+      currentTime = this.addMinutes(currentTime, 30);
     }
 
     this.availableTimeSlots = timeSlots;
@@ -52,7 +50,6 @@ export class BookingComponent implements OnInit {
   }
 
   checkAvailability(): boolean {
-    // Check if the selected time slot is available
     const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
     return !bookings.some((booking: Booking) => 
       booking.studio === this.studio.Name &&
@@ -74,7 +71,7 @@ export class BookingComponent implements OnInit {
       user: { name: this.userName, email: this.userEmail }
     };
 
-    // Save booking to the backend
+
     this.bookingService.saveBooking(booking).subscribe(
       response => {
         alert(`Booking Confirmed!\n\nStudio: ${booking.studio}\nDate: ${booking.date}\nTime: ${booking.time}\nName: ${booking.user.name}\nEmail: ${booking.user.email}`);

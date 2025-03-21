@@ -24,13 +24,6 @@ export class StudioListComponent implements OnInit {
     this.loadStudios();
   }
 
-  
-  // loadStudios(): void {
-  //   this.studioService.getStudios().subscribe(data => {
-  //     this.studios = data;
-  //   });
-  // }
-
   loadStudios(): void {
     this.studioService.getStudios().subscribe(data => {
       this.studios = data;
@@ -38,14 +31,6 @@ export class StudioListComponent implements OnInit {
       this.autoCompleteList = [...new Set(data.map(studio => studio.Location.Area))];
     });
   }
-
-  // filterStudios(): void {
-  //   this.studioService.getStudios().subscribe(data => {
-  //     this.studios = data.filter(studio =>
-  //       studio.Location.Area.toLowerCase().includes(this.searchQuery.toLowerCase())
-  //     );
-  //   });
-  // }
 
   filterStudios(): void {
     if (this.searchQuery) {
@@ -86,11 +71,6 @@ export class StudioListComponent implements OnInit {
     this.selectedStudio = studio;
   }
 
-  // selectStudio(studio: Studio): void {
-    
-  //   this.selectedStudio = this.selectedStudio?.Id === studio.Id ? null : studio;
-  // }
-
   closeBookingPopup(): void {
     this.selectedStudio = null;
   }
@@ -102,14 +82,6 @@ export class StudioListComponent implements OnInit {
   viewBookingList(): void {
     this.router.navigate(['/viewBookings']);
   }
-
-  // getStars(rating: number): string {
-  //   let stars = '';
-  //   for (let i = 0; i < 5; i++) {
-  //     stars += i < rating ? '<span class="star">★</span>' : '<span class="star text-secondary">☆</span>';
-  //   }
-  //   return stars;
-  // }
 
   getStars(rating: number): string {
     let stars = '<span class="rating-label">Rating:</span> ';
