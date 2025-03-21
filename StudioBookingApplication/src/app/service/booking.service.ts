@@ -8,7 +8,7 @@ import { Booking } from '../model/booking';
 })
 export class BookingService {
 
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'https://json-server-deployment-4nnp.onrender.com';
 
   constructor(private http: HttpClient) {}
 
